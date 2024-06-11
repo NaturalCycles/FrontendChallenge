@@ -1,0 +1,17 @@
+<div class="countdown-container">
+  <h1>{{ displayTitle }}</h1>
+  <p>{{ timeRemaining }}</p>
+  <form>
+    <div class="input-group">
+      <div class="input-item">
+        <input id="eventTitle" type="text" [value]="eventTitle || ''" (input)="onEventTitleChange($event)" placeholder=" ">
+        <label for="eventTitle">Title</label>
+      </div>
+      <div class="input-item">
+        <input id="eventDate" type="date" [value]="eventDate ? (eventDate | date:'yyyy-MM-dd') : ''" (change)="onEventDateChange($event)">
+        <label for="eventDate">Date</label>
+      </div>
+    </div>
+    <button type="button" (click)="clearEvent()">Clear Event</button>
+  </form>
+</div>

@@ -1,0 +1,247 @@
+$background-color: #f4f4f4;
+$primary-color: #7d3f98;
+$text-color: #000;
+$font-family: Arial, sans-serif;
+$button-font-size: 16px; 
+
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin text-styles($font-size, $color) {
+  font-size: $font-size;
+  color: $color;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: $background-color;
+  overflow: hidden; 
+}
+.countdown-container {
+  @include flex-center;
+  flex-direction: column;
+  min-height: 100vh; 
+  width: 100vw;
+  background-color: $background-color;
+  text-align: center;
+  font-family: $font-family;
+  h1, p {
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0 0 20px 0;
+    @include text-styles(32px, $primary-color); 
+  }
+  form {
+    @include flex-center;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 20px;
+    .input-group {
+      @include flex-center;
+      flex-direction: column;
+      width: 100%;
+      margin: 20px 0;
+      @media (min-width: 768px) {
+        flex-direction: row;
+        justify-content: center;
+      }
+    }
+    .input-item {
+      position: relative;
+      margin: 20px 0;
+      width: 80%;
+      @media (min-width: 768px) {
+        width: 40%;
+      }
+      label {
+        position: absolute;
+        top: 0;
+        left: 10px;
+        background: $background-color;
+        padding: 0 5px;
+        z-index: 1;
+        @include text-styles(24px, $text-color); 
+        transform: translateY(30%); 
+        transition: all 0.3s ease;
+        pointer-events: none;
+      }
+      input {
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        width: 100%;
+        position: relative;
+        z-index: 0;
+        @include text-styles(24px, $text-color); 
+        background: transparent;
+        &:focus {
+          border-color: $primary-color;
+        }
+        &:focus + label,
+        &:not(:placeholder-shown) + label {
+          top: -26px;
+          font-size: 20px;
+          color: $primary-color;
+        }
+      }
+    }
+    .title-item,
+    .date-item {
+      @extend .input-item;
+    }
+  }
+  button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: $primary-color;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    @include text-styles($button-font-size, #fff);
+  }
+}
+/* Desktop and higher resolution */
+@media (min-width: 1281px) {
+  .countdown-container {
+    h1, p {
+      font-size: 4vw;
+    }
+    form {
+      .input-item {
+        width: 20%;
+        margin: 30px;
+        label, input {
+          font-size: 2vw;
+        }
+        input:focus + label,
+        input:not(:placeholder-shown) + label {
+          font-size: 1.5vw;
+        }
+      }
+    }
+  }
+}
+/* Laptops and Desktops */
+@media (min-width: 1025px) and (max-width: 1280px) {
+  .countdown-container {
+    h1, p {
+      font-size: 4vw;
+    }
+    form {
+      .input-item {
+        width: 30%;
+        margin: 30px;
+
+        label, input {
+          font-size: 2vw;
+        }
+        input:focus + label,
+        input:not(:placeholder-shown) + label {
+          font-size: 1.5vw;
+        }
+      }
+    }
+  }
+}
+/* Tablets and Ipads (portrait) */
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+  .countdown-container {
+    h1, p {
+      font-size: 6vw;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 4vw;
+    }
+    form {
+      .input-item {
+        width: 80%;
+        margin: 20px;
+
+        label, input {
+          font-size: 5vw;
+        }
+        input:focus + label,
+        input:not(:placeholder-shown) + label {
+          font-size: 4vw;
+        }
+      }
+    }
+  }
+}
+/* Tablets and Ipads (landscape) */
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+  .countdown-container {
+    h1, p {
+      font-size: 5vw;
+    }
+    form {
+      .input-item {
+        width: 40%;
+        margin: 30px;
+        label, input {
+          font-size: 3vw;
+        }
+        input:focus + label,
+        input:not(:placeholder-shown) + label {
+          font-size: 2.5vw;
+        }
+      }
+    }
+  }
+}
+/* Low Resolution Tablets, Mobiles (Landscape) */
+@media (min-width: 481px) and (max-width: 767px) {
+  .countdown-container {
+    h1, p {
+      font-size: 5vw;
+    }
+    form {
+      .input-item {
+        width: 70%;
+        margin: 30px;
+        label, input {
+          font-size: 4vw;
+        }
+        input:focus + label,
+        input:not(:placeholder-shown) + label {
+          font-size: 3.5vw;
+        }
+      }
+    }
+  }
+}
+/* Most of the Smartphones Mobiles (Portrait) */
+@media (min-width: 320px) and (max-width: 480px) {
+  .countdown-container {
+    h1, p {
+      font-size: 8vw;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 5vw;
+    }
+    form {
+      .input-item {
+        width: 90%;
+        margin: 20px;
+
+        label, input {
+          font-size: 6vw;
+        }
+        input:focus + label,
+        input:not(:placeholder-shown) + label {
+          font-size: 5vw;
+          top: -18px;
+        }
+      }
+    }
+  }
+}
