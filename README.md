@@ -63,7 +63,7 @@ Build Docker Image
     docker run -p 80:80 countdown-app
     ```
 ### Deployment 
-The application is deployed and can be accessed at www.something.com.
+The application is deployed and can be accessed at https://erikkhan.github.io/FrontendChallenge/
 
 ### Suggestions for Improvment
 - Cross-Browser Testing: Ensure compatibility across different browsers.
